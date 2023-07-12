@@ -3,12 +3,11 @@ package com.moveableapps.pf.commands;
 import com.moveableapps.pf.core.BookKeeper;
 import com.moveableapps.pf.data.DBRepository;
 import com.moveableapps.pf.loaders.CsvLoader;
+import com.moveableapps.pf.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-
-import java.nio.file.Path;
 
 @Command(name = "load", description = "Load a file")
 public class LoadCommand implements Runnable {
@@ -48,24 +47,9 @@ public class LoadCommand implements Runnable {
         logger.info("For account: " + account);
         logger.info("using date format: " + dateFormat);
         logger.info("Precision: " + precision + " decimal places");
-        BookKeeper bookKeeper = new BookKeeper(new DBRepository(getDatabasePath()));
+        BookKeeper bookKeeper = new BookKeeper(new DBRepository(Utils.getDatabasePath(logger)));
 
         CsvLoader loader = new CsvLoader(inputFile, dateField, account, amountField, bookKeeper, descriptionField);
         loader.load(delimiter, skipFirstLine, dateFormat, precision);
-    }
-
-    private String getDatabasePath() {
-        String homeDirectory = System.getenv("HOME");
-        if (homeDirectory == null) {
-            logger.error("Unable to get environment variable HOME");
-            throw new RuntimeException("Unable to get environment variable HOME");
-        }
-
-        String xdgDataHome = System.getenv("XDG_DATA_HOME");
-        if (xdgDataHome == null || xdgDataHome.isBlank()) {
-            xdgDataHome = Path.of(homeDirectory, ".local", "share").toString();
-        }
-
-        return Path.of(xdgDataHome, "pf").toString();
     }
 }

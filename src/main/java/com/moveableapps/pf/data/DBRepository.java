@@ -288,7 +288,7 @@ public class DBRepository implements Repository {
                     int i = sqlStatementString.indexOf(' ');
                     sqlStatementString = sqlStatementString.substring(i + 1, sqlStatementString.length() - "*/".length());
                 }
-                if (sqlStatementString.trim().length() > 0) {
+                if (!sqlStatementString.trim().isEmpty()) {
                     statement.execute(sqlStatementString);
                 }
             }

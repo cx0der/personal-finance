@@ -1,9 +1,8 @@
 package com.moveableapps.pf.commands;
 
 import com.moveableapps.pf.core.BookKeeper;
-import com.moveableapps.pf.data.DBRepository;
+import com.moveableapps.pf.data.Repository;
 import com.moveableapps.pf.loaders.CsvLoader;
-import com.moveableapps.pf.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import picocli.CommandLine.Command;
@@ -40,6 +39,12 @@ public class LoadCommand implements Runnable {
     @Option(names = {"p", "--precision"}, description = "Number of decimal places", defaultValue = "2")
     private int precision;
 
+    private final Repository repository;
+
+    public LoadCommand(Repository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public void run() {
         logger.info("Personal Finance");
@@ -47,7 +52,7 @@ public class LoadCommand implements Runnable {
         logger.info("For account: " + account);
         logger.info("using date format: " + dateFormat);
         logger.info("Precision: " + precision + " decimal places");
-        BookKeeper bookKeeper = new BookKeeper(new DBRepository(Utils.getDatabasePath(logger)));
+        BookKeeper bookKeeper = new BookKeeper(repository);
 
         CsvLoader loader = new CsvLoader(inputFile, dateField, account, amountField, bookKeeper, descriptionField);
         loader.load(delimiter, skipFirstLine, dateFormat, precision);

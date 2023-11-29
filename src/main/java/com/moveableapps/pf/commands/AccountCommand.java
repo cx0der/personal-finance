@@ -1,18 +1,13 @@
 package com.moveableapps.pf.commands;
 
-import com.moveableapps.pf.Main;
 import com.moveableapps.pf.core.BookKeeper;
-import com.moveableapps.pf.data.DBRepository;
-import com.moveableapps.pf.data.MemoryRepository;
 import com.moveableapps.pf.data.Repository;
 import com.moveableapps.pf.entities.Account;
 import com.moveableapps.pf.entities.AccountType;
-import com.moveableapps.pf.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.ParentCommand;
 
 import java.util.concurrent.Callable;
 
@@ -33,18 +28,15 @@ public class AccountCommand implements Callable<Integer> {
     @Option(names = {"-t", "--type"}, paramLabel = "ACCOUNT TYPE", description = "Valid values: EQUITY, INCOME, ASSET, LIABILITY, EXPENSE")
     AccountType accountType;
 
-    @ParentCommand
-    Main main;
+    private final Repository repository;
+
+    public AccountCommand(Repository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Integer call() throws RuntimeException {
         logger.traceEntry("call()");
-        Repository repository;
-        if (main.getRepo().equalsIgnoreCase("memory")) {
-            repository = new MemoryRepository();
-        } else {
-            repository = new DBRepository(Utils.getDatabasePath(logger));
-        }
         BookKeeper bookKeeper = new BookKeeper(repository, logger);
         bookKeeper.addAccount(new Account(accountName, accountDescription, currency, accountType));
         logger.traceExit();

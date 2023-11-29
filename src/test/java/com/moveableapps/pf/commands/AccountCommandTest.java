@@ -13,12 +13,13 @@ class AccountCommandTest {
 
     @BeforeEach
     void setUp() {
-        cmd = new CommandLine(new Main());
+        Main main = new Main();
+        cmd = new CommandLine(main);
     }
 
     @Test
     void addAccountBaseTest() {
-        int exitCode = cmd.execute("--repo=memory", "account", "-a='test account'", "-c=INR", "-d='income account'", "-t=INCOME");
+        int exitCode = cmd.execute("account", "-a='test account'", "-c=INR", "-d='income account'", "-t=INCOME");
         assertEquals(0, exitCode);
     }
 }

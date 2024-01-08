@@ -6,8 +6,6 @@ import com.moveableapps.pf.entities.AutoMapping;
 import com.moveableapps.pf.entities.Split;
 import com.moveableapps.pf.entities.Transaction;
 import com.moveableapps.pf.parsers.CsvParser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,7 +17,6 @@ import java.util.Optional;
 
 public class CsvLoader {
 
-    private static final Logger logger = LogManager.getLogger(CsvLoader.class);
 
     private final String filePath;
     private final int dateField;
@@ -40,12 +37,10 @@ public class CsvLoader {
     public void load(char delimiter, boolean skipFirstLine, String dateFormatPattern, int precision) {
         Optional<Account> mayBeAccount = bookKeeper.getAccountByName(accountName);
         if (mayBeAccount.isEmpty()) {
-            logger.error("Unable to find account " + accountName);
             throw new RuntimeException("Unable to find account " + accountName);
         }
 
         if (mayBeAccount.get().id().isEmpty()) {
-            logger.error("Unable to find account " + accountName);
             throw new RuntimeException("Unable to find account " + accountName);
         }
 
@@ -53,7 +48,6 @@ public class CsvLoader {
         try {
             dateFormat = new SimpleDateFormat(dateFormatPattern);
         } catch (IllegalArgumentException e) {
-            logger.error("Invalid date format: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
 
@@ -72,7 +66,6 @@ public class CsvLoader {
                 try {
                     postDate = dateFormat.parse(entry.get(dateField));
                 } catch (ParseException e) {
-                    logger.error("Unable to parse date: " + entry.get(dateField) + " skipping record");
                     continue;
                 }
                 Date entryDate = Date.from(java.time.ZonedDateTime.now().toInstant());
@@ -97,7 +90,7 @@ public class CsvLoader {
     private long getMappingOrDefault(Map<String, AutoMapping> mappings, String description, long defaultValue) {
         Optional<String> mayMapping = mappings.keySet().stream().filter(d -> description.toLowerCase().contains(d.toLowerCase())).findFirst();
         if (mayMapping.isEmpty()) {
-            logger.info("no mapping for description: " + description);
+            // logger.info("no mapping for description: " + description);
         }
         return mayMapping.isEmpty() ? defaultValue : mappings.get(mayMapping.get()).accountId();
     }

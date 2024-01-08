@@ -1,8 +1,5 @@
 package com.moveableapps.pf.parsers;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +11,6 @@ import java.util.Map;
 
 public class CsvParser {
 
-    private static final Logger logger = LogManager.getLogger(CsvParser.class);
     private static final char DOUBLE_QUOTES = '"';
 
     private final String fileName;
@@ -40,7 +36,6 @@ public class CsvParser {
                 result.add(fields);
             }
         } catch (IOException e) {
-            logger.error("Unable to parse: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
         return result;
@@ -58,7 +53,7 @@ public class CsvParser {
         for (char c : line.toCharArray()) {
             if (c == DOUBLE_QUOTES) {
                 if (isFieldWithDoubleQuotes) {
-                    if (field.length() > 0) {
+                    if (!field.isEmpty()) {
                         field.append(DOUBLE_QUOTES);
                         isFieldWithDoubleQuotes = false;
                     }

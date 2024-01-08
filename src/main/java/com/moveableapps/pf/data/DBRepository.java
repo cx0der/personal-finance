@@ -5,8 +5,6 @@ import com.moveableapps.pf.entities.AccountType;
 import com.moveableapps.pf.entities.AutoMapping;
 import com.moveableapps.pf.entities.Split;
 import com.moveableapps.pf.entities.Transaction;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +32,6 @@ import java.util.Scanner;
 
 public class DBRepository implements Repository {
 
-    private static final Logger logger = LogManager.getLogger(DBRepository.class);
     private static final DateFormat sqliteDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     private final String jdbcUrl;
@@ -62,6 +59,9 @@ public class DBRepository implements Repository {
                 return resultSet.getLong(1);
             }
         } catch (SQLException e) {
+            if (e.getMessage().contains("SQLITE_CONSTRAINT_UNIQUE")) {
+                throw new RuntimeException("Account Name is not unique");
+            }
             throw new RuntimeException(e);
         }
     }
@@ -97,9 +97,9 @@ public class DBRepository implements Repository {
                 mayBeAccount = Optional.of(parseResultSetForAccount(rs));
             }
         } catch (SQLException e) {
-            logger.error("Error fetching account: " + e.getLocalizedMessage());
+//            logger.error("Error fetching account: " + e.getLocalizedMessage());
         } catch (ParseException e) {
-            logger.error("Error parsing data: " + e.getLocalizedMessage());
+//            logger.error("Error parsing data: " + e.getLocalizedMessage());
         }
         return mayBeAccount;
     }
@@ -247,7 +247,7 @@ public class DBRepository implements Repository {
                 mappings.put(description, mapping);
             }
         } catch (SQLException e) {
-            logger.error("Error fetching mappings: " + e.getLocalizedMessage());
+//            logger.error("Error fetching mappings: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
         return mappings;
@@ -259,7 +259,7 @@ public class DBRepository implements Repository {
             try {
                 Files.createDirectories(directory);
             } catch (IOException e) {
-                logger.error("Unable to create database directory: " + e.getLocalizedMessage());
+//                logger.error("Unable to create database directory: " + e.getLocalizedMessage());
                 throw new RuntimeException(e);
             }
         }
@@ -268,14 +268,14 @@ public class DBRepository implements Repository {
             createDatabase(connection, DBRepository.class.getClassLoader().getResourceAsStream("sqlite_bootstrap.sql"));
             return connection;
         } catch (SQLException e) {
-            logger.error("Unable to create SQLite DB: " + e.getLocalizedMessage());
+//            logger.error("Unable to create SQLite DB: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
     }
 
     private void createDatabase(Connection connection, InputStream is) {
         if (is == null) {
-            logger.error("Unable to read SQL script");
+//            logger.error("Unable to read SQL script");
             throw new RuntimeException("Unable to read SQL script");
         }
         Scanner scanner = new Scanner(is);
@@ -293,7 +293,7 @@ public class DBRepository implements Repository {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Error while creating database: " + e.getLocalizedMessage());
+//            logger.error("Error while creating database: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
     }

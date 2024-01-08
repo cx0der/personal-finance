@@ -1,15 +1,12 @@
 package com.moveableapps.pf.utils;
 
-import org.apache.logging.log4j.Logger;
-
 import java.nio.file.Path;
 
 public class Utils {
 
-    public static String getDatabasePath(Logger logger) {
+    public static String getDatabasePath() {
         String homeDirectory = System.getenv("HOME");
         if (homeDirectory == null) {
-            logger.error("Unable to get environment variable HOME");
             throw new RuntimeException("Unable to get environment variable HOME");
         }
 
@@ -17,7 +14,6 @@ public class Utils {
         if (xdgDataHome == null || xdgDataHome.isBlank()) {
             xdgDataHome = Path.of(homeDirectory, ".local", "share").toString();
         }
-
         return Path.of(xdgDataHome, "pf").toString();
     }
 }

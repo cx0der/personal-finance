@@ -11,7 +11,6 @@ repositories {
 
 dependencies {
     implementation 'org.jcommander:jcommander:1.83'
-    annotationProcessor 'info.picocli:picocli-codegen:4.7.5'
     implementation 'org.xerial:sqlite-jdbc:3.42.0.0'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

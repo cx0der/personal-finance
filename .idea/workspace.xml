@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99f5bad-157f-429c-8fbe-91c41078ebc7" name="Changes" comment="Add account&#10;&#10;Feature to add accounts&#10;Feature to specify repo type db or memory">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/utils/TestUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/AccountCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/AccountCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/LoadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/LoadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/MappingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/commands/MappingCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/data/MemoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/moveableapps/pf/data/MemoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/commands/AccountCommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/commands/AccountCommandTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/commands/MappingCommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/commands/MappingCommandTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="f99f5bad-157f-429c-8fbe-91c41078ebc7" name="Changes" comment="More tests&#10;&#10;Add more tests to Account command&#10;Change Command from interface to abstract class to reduce repeated code&#10;Refactor to allow more DI" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -286,7 +274,23 @@
       <option name="project" value="LOCAL" />
       <updated>1689185060781</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="More tests&#10;&#10;Add more tests to Account command&#10;Change Command from interface to abstract class to reduce repeated code&#10;Refactor to allow more DI">
+      <option name="closed" value="true" />
+      <created>1705072760665</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705072760665</updated>
+    </task>
+    <task id="LOCAL-00004" summary="More tests&#10;&#10;Add more tests to Account command&#10;Change Command from interface to abstract class to reduce repeated code&#10;Refactor to allow more DI">
+      <option name="closed" value="true" />
+      <created>1705072821489</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705072821489</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -297,7 +301,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -306,7 +316,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit&#10;&#10;Basic CLI&#10;Import CSV&#10;Unit tests" />
     <MESSAGE value="Add account&#10;&#10;Feature to add accounts&#10;Feature to specify repo type db or memory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add account&#10;&#10;Feature to add accounts&#10;Feature to specify repo type db or memory" />
+    <MESSAGE value="More tests&#10;&#10;Add more tests to Account command&#10;Change Command from interface to abstract class to reduce repeated code&#10;Refactor to allow more DI" />
+    <option name="LAST_COMMIT_MESSAGE" value="More tests&#10;&#10;Add more tests to Account command&#10;Change Command from interface to abstract class to reduce repeated code&#10;Refactor to allow more DI" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -27,6 +27,6 @@ CREATE TABLE IF NOT EXISTS split(
 
 CREATE TABLE IF NOT EXISTS auto_mapping(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    description TEXT NOT NULL,
+    description TEXT NOT NULL UNIQUE,
     account_id INTEGER NOT NULL
 );

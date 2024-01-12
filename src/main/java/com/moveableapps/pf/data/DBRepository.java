@@ -227,6 +227,9 @@ public class DBRepository implements Repository {
             ResultSet rs = statement.getGeneratedKeys();
             return rs.getLong(1);
         } catch (SQLException e) {
+            if (e.getMessage().contains("SQLITE_CONSTRAINT_UNIQUE")) {
+                throw new RuntimeException("Description is not unique");
+            }
             throw new RuntimeException(e);
         }
     }

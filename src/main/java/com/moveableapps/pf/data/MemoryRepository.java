@@ -29,6 +29,10 @@ public class MemoryRepository implements Repository {
 
     @Override
     public long addAccount(Account account) {
+        Optional<Account> exists = accounts.stream().filter(a -> a.name().equals(account.name())).findAny();
+        if (exists.isPresent()) {
+            throw new RuntimeException("Account Name is not unique");
+        }
         long newAccountId = this.accounts.size() + 1;
         this.accounts.add(account.copyWithAccountId(newAccountId));
         return newAccountId;

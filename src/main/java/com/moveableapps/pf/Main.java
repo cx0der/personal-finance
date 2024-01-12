@@ -45,21 +45,26 @@ public class Main {
             jc.usage();
             System.exit(1);
         }
+        String parsedCommand = jc.getParsedCommand();
+        if (parsedCommand == null || parsedCommand.isEmpty()) {
+            jc.usage();
+            System.exit(1);
+        }
         main.init();
 
         Command command = null;
 
-        switch (jc.getParsedCommand()) {
+        switch (parsedCommand) {
             case "account": {
-                command = new AccountCommand(main.repository, accountCommandArgs);
+                command = new AccountCommand(main.repository, accountCommandArgs, System.out, System.err);
                 break;
             }
             case "load": {
-                command = new LoadCommand(main.repository, loadCommandArgs);
+                command = new LoadCommand(main.repository, loadCommandArgs, System.out, System.err);
                 break;
             }
             case "map": {
-                command = new MappingCommand(main.repository, mappingCommandArgs);
+                command = new MappingCommand(main.repository, mappingCommandArgs, System.out, System.err);
                 break;
             }
             default:

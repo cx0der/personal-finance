@@ -74,6 +74,10 @@ public class MemoryRepository implements Repository {
 
     @Override
     public long addAutoMapping(AutoMapping mapping) {
+        Optional<AutoMapping> mayBeMapping = autoMappings.stream().filter(m -> m.description().equals(mapping.description())).findFirst();
+        if (mayBeMapping.isPresent()) {
+            throw new RuntimeException("Description is not unique");
+        }
         long newId = this.autoMappings.size() + 1;
         this.autoMappings.add(mapping.copyWithMappingId(newId));
         return newId;

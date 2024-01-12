@@ -18,9 +18,7 @@ class AccountCommandArgsTest {
         JCommander jc = JCommander.newBuilder()
                 .addCommand("account", cmdArgs)
                 .build();
-        assertThrows(ParameterException.class, () -> {
-            jc.parse(args);
-        });
+        assertThrows(ParameterException.class, () -> jc.parse(args));
 
     }
 
@@ -43,9 +41,7 @@ class AccountCommandArgsTest {
         JCommander jc = JCommander.newBuilder()
                 .addCommand("account", cmdArgs)
                 .build();
-        assertThrows(ParameterException.class, () -> {
-            jc.parse(args);
-        });
+        assertThrows(ParameterException.class, () -> jc.parse(args));
     }
 
     @Test
@@ -68,8 +64,6 @@ class AccountCommandArgsTest {
         JCommander jc = JCommander.newBuilder()
                 .addCommand("account", cmdArgs)
                 .build();
-        assertThrows(ParameterException.class, () -> {
-            jc.parse(args);
-        });
+        assertThrows(ParameterException.class, () -> jc.parse(args));
     }
 }

@@ -11,7 +11,7 @@ class MappingCommandArgsTest {
 
     @Test
     void should_throwException_whenNoOptions() {
-        String[] args = {"mapping"};
+        String[] args = {"map"};
         JCommander jc = buildCommander();
 
         assertThrows(ParameterException.class, () -> jc.parse(args));
@@ -19,7 +19,7 @@ class MappingCommandArgsTest {
 
     @Test
     void should_passValidation_whenListOptionIsSet() {
-        String[] args = {"mapping", "-l"};
+        String[] args = {"map", "-l"};
         MappingCommandArgs cmdArgs = new MappingCommandArgs();
         JCommander jc = buildCommanderWith(cmdArgs);
         jc.parse(args);
@@ -29,7 +29,7 @@ class MappingCommandArgsTest {
 
     @Test
     void should_throwException_whenAddParamsAreMissing() {
-        String[] args = {"mapping", "-a"};
+        String[] args = {"map", "-a"};
         JCommander jc = buildCommander();
 
         assertThrows(ParameterException.class, () -> jc.parse(args));
@@ -37,7 +37,7 @@ class MappingCommandArgsTest {
 
     @Test
     void should_passValidation_whenAllAddOptionsAreGiven() {
-        String[] args = {"mapping", "--add", "-d", "groceries", "--target", "Expenses:Groceries"};
+        String[] args = {"map", "--add", "-d", "groceries", "--target", "Expenses:Groceries"};
         MappingCommandArgs cmdArgs = new MappingCommandArgs();
         JCommander jc = buildCommanderWith(cmdArgs);
         jc.parse(args);
@@ -50,6 +50,6 @@ class MappingCommandArgsTest {
     }
 
     private JCommander buildCommanderWith(MappingCommandArgs cmdArgs) {
-        return JCommander.newBuilder().addCommand("mapping", cmdArgs).build();
+        return JCommander.newBuilder().addCommand("map", cmdArgs).build();
     }
 }

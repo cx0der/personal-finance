@@ -15,13 +15,11 @@ public class ListAccountsCommand implements Command {
 
         List<Account> allAccounts = bookKeeper.getAllAccounts();
 
-        if (args.pattern != null && !args.pattern.isEmpty()) {
-
-            printAccounts(allAccounts.stream().filter(account -> account.name().matches(args.pattern)).toList(), out);
+        if (args.getPattern() != null && !args.getPattern().isEmpty()) {
+            printAccounts(allAccounts.stream().filter(account -> account.name().matches(args.getPattern())).toList(), out);
         } else {
             printAccounts(allAccounts, out);
         }
-
         return 0;
     }
 

@@ -1,5 +1,6 @@
 package com.moveableapps.pf.commands;
 
+import com.moveableapps.pf.core.BookKeeper;
 import com.moveableapps.pf.data.MemoryRepository;
 import com.moveableapps.pf.data.Repository;
 import com.moveableapps.pf.entities.Account;
@@ -18,19 +19,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MappingCommandTest {
 
     private Repository repository;
+    private BookKeeper bookKeeper;
 
     @BeforeEach
     void setUp() {
         repository = new MemoryRepository();
+        bookKeeper = new BookKeeper(repository);
     }
 
     @Test
     void listMappings_exitsWithZero() {
         repository.addAutoMapping(TestUtils.getTestAutoMapping());
         MappingCommandArgs args = new MappingCommandArgs(true);
-        MappingCommand cmd = new MappingCommand(repository, args, System.out, System.err);
+        MappingCommand cmd = new MappingCommand();
 
-        int exitCode = cmd.execute();
+        int exitCode = cmd.execute(args, bookKeeper, System.out, System.err);
 
         assertEquals(0, exitCode);
     }
@@ -44,8 +47,8 @@ class MappingCommandTest {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         MappingCommandArgs args = new MappingCommandArgs(true);
-        MappingCommand cmd = new MappingCommand(repository, args, new PrintStream(stream), System.err);
-        cmd.execute();
+        MappingCommand cmd = new MappingCommand();
+        cmd.execute(args, bookKeeper, new PrintStream(stream), System.err);
 
         assertEquals(expected, stream.toString());
     }
@@ -55,8 +58,8 @@ class MappingCommandTest {
         Account account = new Account("Expense:Groceries", "Groceries", "INR", AccountType.EXPENSE);
         repository.addAccount(account);
         MappingCommandArgs args = new MappingCommandArgs("groceries", "Expense:Groceries");
-        MappingCommand cmd = new MappingCommand(repository, args, System.out, System.err);
-        cmd.execute();
+        MappingCommand cmd = new MappingCommand();
+        cmd.execute(args, bookKeeper, System.out, System.err);
 
         Map<String, AutoMapping> mappings = repository.getAllAutoMappings();
         assertEquals(1, mappings.size());
@@ -71,8 +74,8 @@ class MappingCommandTest {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         MappingCommandArgs args = new MappingCommandArgs("groceries", "Expense:Groceries");
-        MappingCommand cmd = new MappingCommand(repository, args, System.out, new PrintStream(stream));
-        cmd.execute();
+        MappingCommand cmd = new MappingCommand();
+        cmd.execute(args, bookKeeper, System.out, new PrintStream(stream));
 
         assertEquals("Description is not unique\n", stream.toString());
 

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99f5bad-157f-429c-8fbe-91c41078ebc7" name="Changes" comment="Add mapping&#10;&#10;Add ability to define mappings&#10;Add Unique constraint to auto mapping schema">
+    <list default="true" id="f99f5bad-157f-429c-8fbe-91c41078ebc7" name="Changes" comment="Mapping command test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/commands/MappingCommandArgsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/moveableapps/pf/commands/MappingCommandArgsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +28,11 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="personal-finance" type="f1a62948:ProjectNode" />
+                <item name="pf" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="personal-finance" type="f1a62948:ProjectNode" />
+                <item name="pf" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
             </expand>
@@ -75,36 +74,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.AccountCommandArgsTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AccountCommandTest.addAccountBaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.AccountCommandTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.BookKeeperTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build personal-finance.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DBRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MappingCommandArgsTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MappingCommandTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MemoryRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'com.moveableapps.pf'.executor&quot;: &quot;Coverage&quot;,
-    &quot;Gradle.personal-finance [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Test Runner&quot;: &quot;Test execution finished&quot;,
-    &quot;Notification.DoNotAsk-Test Runner&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/shivakumar/projects/personal-finance/src/test/resources&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2140351&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.AccountCommandArgsTest.executor": "Run",
+    "Gradle.AccountCommandTest.addAccountBaseTest.executor": "Run",
+    "Gradle.AccountCommandTest.executor": "Run",
+    "Gradle.AddAccountCommandArgsTest.executor": "Run",
+    "Gradle.AddAccountCommandTest.executor": "Run",
+    "Gradle.BookKeeperTest.executor": "Run",
+    "Gradle.Build personal-finance.executor": "Run",
+    "Gradle.DBRepositoryTest.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.ListAccountsArgsTest.executor": "Run",
+    "Gradle.ListAccountsCommandTest.executor": "Coverage",
+    "Gradle.MappingCommandArgsTest.executor": "Run",
+    "Gradle.MappingCommandTest.executor": "Run",
+    "Gradle.MemoryRepositoryTest.executor": "Run",
+    "Gradle.Tests in 'com.moveableapps.pf'.executor": "Coverage",
+    "Gradle.personal-finance [:Main.main()].executor": "Debug",
+    "Notification.DisplayName-DoNotAsk-Test Runner": "Test execution finished",
+    "Notification.DoNotAsk-Test Runner": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "prop-refactor-2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/shivakumar/projects/personal-finance/src/test/resources",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2140351",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources" />
@@ -117,6 +121,144 @@
       <recent name="com.moveableapps.pf.data" />
       <recent name="com.moveableapps.pf.core" />
     </key>
+  </component>
+  <component name="RunManager" selected="Gradle.ListAccountsCommandTest">
+    <configuration name="AddAccountCommandTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.moveableapps.pf.commands.AddAccountCommandTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ListAccountsArgsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.moveableapps.pf.commands.ListAccountsArgsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ListAccountsCommandTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.moveableapps.pf.commands.ListAccountsCommandTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="MappingCommandArgsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.moveableapps.pf.commands.MappingCommandArgsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="MappingCommandTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.moveableapps.pf.commands.MappingCommandTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.ListAccountsArgsTest" />
+      <item itemvalue="Gradle.ListAccountsCommandTest" />
+      <item itemvalue="Gradle.MappingCommandArgsTest" />
+      <item itemvalue="Gradle.MappingCommandTest" />
+      <item itemvalue="Gradle.AddAccountCommandTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ListAccountsCommandTest" />
+        <item itemvalue="Gradle.ListAccountsArgsTest" />
+        <item itemvalue="Gradle.MappingCommandTest" />
+        <item itemvalue="Gradle.MappingCommandArgsTest" />
+        <item itemvalue="Gradle.AddAccountCommandTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -219,9 +361,11 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/personal_finance$BookKeeperTest.ic" NAME="BookKeeperTest Coverage Results" MODIFIED="1687543023509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/personal_finance$MemoryRepositoryTest.ic" NAME="MemoryRepositoryTest Coverage Results" MODIFIED="1686852090612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/pf$MappingCommandArgsTest.ic" NAME="MappingCommandArgsTest Coverage Results" MODIFIED="1705075924647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/pf$Tests_in__com_moveableapps_pf_.ic" NAME="Tests in 'com.moveableapps.pf' Coverage Results" MODIFIED="1704989253975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/pf$ListAccountsArgsTest.ic" NAME="ListAccountsArgsTest Coverage Results" MODIFIED="1722159291956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/pf$ListAccountsCommandTest.ic" NAME="ListAccountsCommandTest Coverage Results" MODIFIED="1722160985708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/pf$MappingCommandArgsTest.ic" NAME="MappingCommandArgsTest Coverage Results" MODIFIED="1705075924647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/personal_finance$MemoryRepositoryTest.ic" NAME="MemoryRepositoryTest Coverage Results" MODIFIED="1686852090612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/personal_finance$BookKeeperTest.ic" NAME="BookKeeperTest Coverage Results" MODIFIED="1687543023509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

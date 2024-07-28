@@ -2,7 +2,7 @@ package com.moveableapps.pf.commands;
 
 import com.beust.jcommander.Parameter;
 
-public class LoadCommandArgs {
+public class LoadCommandArgs extends CommandArgs {
 
     @Parameter(names = "-f", description = "Path of the file to import", required = true)
     String inputFile;

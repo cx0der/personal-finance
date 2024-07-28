@@ -7,6 +7,7 @@ import com.moveableapps.pf.loaders.CsvLoader;
 import java.io.PrintStream;
 
 public class LoadCommand implements Command {
+    public static final String COMMAND_NAME = "load";
 
     @Override
     public int execute(CommandArgs commandArgs, BookKeeper bookKeeper, PrintStream out, PrintStream err) {

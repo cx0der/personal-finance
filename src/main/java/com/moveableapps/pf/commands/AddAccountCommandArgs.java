@@ -8,7 +8,7 @@ import com.moveableapps.pf.entities.AccountType;
 
 import java.util.Map;
 
-@Parameters(parametersValidators = AddAccountCommandArgs.class)
+@Parameters(parametersValidators = AddAccountCommandArgs.class, commandDescription = "Add account")
 public class AddAccountCommandArgs extends CommandArgs implements IParametersValidator {
 
     @Parameter(names = {"-a", "--add"}, description = "Name of account")

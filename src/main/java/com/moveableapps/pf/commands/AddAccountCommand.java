@@ -8,6 +8,7 @@ import java.awt.print.Book;
 import java.io.PrintStream;
 
 public class AddAccountCommand implements Command {
+    public static final String COMMAND_NAME = "add-account";
     @Override
     public int execute(CommandArgs commandArgs, BookKeeper bookKeeper, PrintStream out, PrintStream err) throws RuntimeException {
         AddAccountCommandArgs args = (AddAccountCommandArgs) commandArgs;

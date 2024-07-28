@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ListAccountsCommandTest {
     private ListAccountsCommand command;
@@ -60,34 +60,31 @@ class ListAccountsCommandTest {
     @Test
     @DisplayName("Command handles empty pattern")
     void listAccountsEmptyPattern() {
-        ListAccountsArgs args = new ListAccountsArgs();
-        args.pattern = "";
+        ListAccountsArgs args = new ListAccountsArgs("");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         Account account = new Account("Expense:Groceries", "Groceries", "GBP", AccountType.EXPENSE);
         long id = repository.addAccount(account);
 
         command.execute(args, bookKeeper, new PrintStream(stream), System.err);
-        assertEquals(getFirstLine()  + getExpectedString(id, account), stream.toString());
+        assertEquals(getFirstLine() + getExpectedString(id, account), stream.toString());
     }
 
     @Test
     @DisplayName("Command handles pattern that results in zero results")
     void listAccountsWithPatternWithZeroResults() {
-        ListAccountsArgs args = new ListAccountsArgs();
-        args.pattern = "df";
+        ListAccountsArgs args = new ListAccountsArgs("df");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         Account account = new Account("Expense:Groceries", "Groceries", "GBP", AccountType.EXPENSE);
         repository.addAccount(account);
 
         command.execute(args, bookKeeper, new PrintStream(stream), System.err);
-        assertEquals(getFirstLine() , stream.toString());
+        assertEquals(getFirstLine(), stream.toString());
     }
 
     @Test
     @DisplayName("Command handles pattern that results in zero results")
     void listAccountsWithPattern() {
-        ListAccountsArgs args = new ListAccountsArgs();
-        args.pattern = "^.*Gr.*";
+        ListAccountsArgs args = new ListAccountsArgs("^.*Gr.*");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         Account account = new Account("Expense:Groceries", "Groceries", "GBP", AccountType.EXPENSE);
         long id = repository.addAccount(account);

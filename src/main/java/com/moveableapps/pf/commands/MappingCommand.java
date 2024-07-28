@@ -1,27 +1,17 @@
 package com.moveableapps.pf.commands;
 
 import com.moveableapps.pf.core.BookKeeper;
-import com.moveableapps.pf.data.Repository;
 import com.moveableapps.pf.entities.Account;
 import com.moveableapps.pf.entities.AutoMapping;
 
 import java.io.PrintStream;
 import java.util.Optional;
 
-public class MappingCommand extends Command {
-
-    private final Repository repository;
-    private final MappingCommandArgs args;
-
-    public MappingCommand(Repository repository, MappingCommandArgs mappingCommandArgs, PrintStream out, PrintStream err) {
-        super(out, err);
-        this.repository = repository;
-        this.args = mappingCommandArgs;
-    }
+public class MappingCommand implements Command {
 
     @Override
-    public int execute() {
-        BookKeeper bookKeeper = new BookKeeper(repository);
+    public int execute(CommandArgs commandArgs, BookKeeper bookKeeper, PrintStream out, PrintStream err) {
+        MappingCommandArgs args = (MappingCommandArgs) commandArgs;
         if (args.listMappings) {
             // List mode
             out.println("Txn Description\tMapped Account");
@@ -32,7 +22,7 @@ public class MappingCommand extends Command {
         } else if (args.addMapping) {
             // Add mode
             try {
-                addMapping(bookKeeper);
+                addMapping(bookKeeper, args);
             } catch (RuntimeException e) {
                 err.println(e.getMessage());
                 return 1;
@@ -41,7 +31,7 @@ public class MappingCommand extends Command {
         return 0;
     }
 
-    private void addMapping(BookKeeper bookKeeper) {
+    private void addMapping(BookKeeper bookKeeper, MappingCommandArgs args) {
         Optional<Account> targetAccount = bookKeeper.getAccountByName(args.targetAccount);
         if (targetAccount.isEmpty()) {
             throw new RuntimeException("Cannot find account by the name: " + args.targetAccount);

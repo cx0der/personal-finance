@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-@Parameters(parametersValidators = ListAccountsArgs.class)
+@Parameters(parametersValidators = ListAccountsArgs.class, commandDescription = "List accounts")
 public class ListAccountsArgs extends CommandArgs implements IParametersValidator {
 
     @Parameter(names = {"-p", "--pattern"}, description = "Regex pattern")

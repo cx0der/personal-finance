@@ -1,7 +1,9 @@
 package com.moveableapps.pf.commands;
 
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
 
+@Parameters(commandDescription = "Load transactions")
 public class LoadCommandArgs extends CommandArgs {
 
     @Parameter(names = "-f", description = "Path of the file to import", required = true)

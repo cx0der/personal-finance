@@ -8,6 +8,7 @@ import java.io.PrintStream;
 import java.util.Optional;
 
 public class MappingCommand implements Command {
+    public static final String COMMAND_NAME = "map";
 
     @Override
     public int execute(CommandArgs commandArgs, BookKeeper bookKeeper, PrintStream out, PrintStream err) {

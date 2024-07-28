@@ -9,10 +9,12 @@ import com.moveableapps.pf.commands.Command;
 import com.moveableapps.pf.commands.CommandArgs;
 import com.moveableapps.pf.commands.ListAccountsArgs;
 import com.moveableapps.pf.commands.ListAccountsCommand;
+import com.moveableapps.pf.commands.ListMappingsCommand;
+import com.moveableapps.pf.commands.ListMappingsCommandArgs;
 import com.moveableapps.pf.commands.LoadCommand;
 import com.moveableapps.pf.commands.LoadCommandArgs;
-import com.moveableapps.pf.commands.MappingCommand;
-import com.moveableapps.pf.commands.MappingCommandArgs;
+import com.moveableapps.pf.commands.AddMappingCommand;
+import com.moveableapps.pf.commands.AddMappingCommandArgs;
 import com.moveableapps.pf.core.BookKeeper;
 import com.moveableapps.pf.data.DBRepository;
 import com.moveableapps.pf.data.MemoryRepository;
@@ -43,7 +45,8 @@ public class Main {
         subCommands.put(ListAccountsCommand.COMMAND_NAME, new ListAccountsArgs());
         subCommands.put(AddAccountCommand.COMMAND_NAME, new AddAccountCommandArgs());
         subCommands.put(LoadCommand.COMMAND_NAME, new LoadCommandArgs());
-        subCommands.put(MappingCommand.COMMAND_NAME, new MappingCommandArgs());
+        subCommands.put(AddMappingCommand.COMMAND_NAME, new AddMappingCommandArgs());
+        subCommands.put(ListMappingsCommand.COMMAND_NAME, new ListMappingsCommandArgs());
         return subCommands;
     }
 
@@ -53,7 +56,8 @@ public class Main {
             case ListAccountsCommand.COMMAND_NAME -> command = new ListAccountsCommand();
             case AddAccountCommand.COMMAND_NAME -> command = new AddAccountCommand();
             case LoadCommand.COMMAND_NAME -> command = new LoadCommand();
-            case MappingCommand.COMMAND_NAME -> command = new MappingCommand();
+            case AddMappingCommand.COMMAND_NAME -> command = new AddMappingCommand();
+            case ListMappingsCommand.COMMAND_NAME -> command = new ListMappingsCommand();
             default -> command = null;
         }
         return Optional.ofNullable(command);

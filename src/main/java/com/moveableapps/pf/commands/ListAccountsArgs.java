@@ -13,7 +13,19 @@ import java.util.regex.PatternSyntaxException;
 public class ListAccountsArgs extends CommandArgs implements IParametersValidator {
 
     @Parameter(names = {"-p", "--pattern"}, description = "Regex pattern")
-    String pattern;
+    private String pattern;
+
+    public ListAccountsArgs() {
+        // Default constructor
+    }
+
+    public ListAccountsArgs(String pattern) {
+        this.pattern = pattern;
+    }
+
+    public String getPattern() {
+        return this.pattern;
+    }
 
     @Override
     public void validate(Map<String, Object> parameters) throws ParameterException {

@@ -1,16 +1,10 @@
 package com.moveableapps.pf.commands;
 
+import com.moveableapps.pf.core.BookKeeper;
+
 import java.io.PrintStream;
 
-public abstract class Command {
+public interface Command {
 
-    protected final PrintStream out;
-    protected final PrintStream err;
-
-    public Command(PrintStream out, PrintStream err) {
-        this.out = out;
-        this.err = err;
-    }
-
-    public abstract int execute() throws Exception;
+    int execute(CommandArgs args, BookKeeper bookKeeper, PrintStream out, PrintStream err) throws Exception;
 }

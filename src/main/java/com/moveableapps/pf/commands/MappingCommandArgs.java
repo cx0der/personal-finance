@@ -8,7 +8,7 @@ import com.beust.jcommander.Parameters;
 import java.util.Map;
 
 @Parameters(parametersValidators = MappingCommandArgs.class)
-public class MappingCommandArgs implements IParametersValidator {
+public class MappingCommandArgs extends CommandArgs implements IParametersValidator {
     @Parameter(names = {"-l", "--list"}, description = "List all mappings")
     boolean listMappings;
 

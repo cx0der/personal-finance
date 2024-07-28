@@ -19,10 +19,14 @@ import com.moveableapps.pf.data.MemoryRepository;
 import com.moveableapps.pf.data.Repository;
 import com.moveableapps.pf.utils.Utils;
 
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Main {
+    public static final String APP_NAME = "pf";
+
     @Parameter(names = {"-r", "--repo"}, description = "Repo to use", hidden = true)
     String repo = "db";
 
@@ -34,21 +38,42 @@ public class Main {
         return new BookKeeper(repository);
     }
 
-    Map<String, CommandArgs> getSubCommands() {
+    Map<String, CommandArgs> getSubCommandsMap() {
         Map<String, CommandArgs> subCommands = new HashMap<>();
-        subCommands.put("list-accounts", new ListAccountsArgs());
-        subCommands.put("add-account", new AddAccountCommandArgs());
-        subCommands.put("load", new LoadCommandArgs());
-        subCommands.put("map", new MappingCommandArgs());
+        subCommands.put(ListAccountsCommand.COMMAND_NAME, new ListAccountsArgs());
+        subCommands.put(AddAccountCommand.COMMAND_NAME, new AddAccountCommandArgs());
+        subCommands.put(LoadCommand.COMMAND_NAME, new LoadCommandArgs());
+        subCommands.put(MappingCommand.COMMAND_NAME, new MappingCommandArgs());
         return subCommands;
+    }
+
+    Optional<Command> getCommand(String commandName) {
+        Command command;
+        switch (commandName) {
+            case ListAccountsCommand.COMMAND_NAME -> command = new ListAccountsCommand();
+            case AddAccountCommand.COMMAND_NAME -> command = new AddAccountCommand();
+            case LoadCommand.COMMAND_NAME -> command = new LoadCommand();
+            case MappingCommand.COMMAND_NAME -> command = new MappingCommand();
+            default -> command = null;
+        }
+        return Optional.ofNullable(command);
+    }
+
+    int executeSubCommand(Command command, CommandArgs args, BookKeeper bookKeeper, PrintStream out, PrintStream err) {
+        try {
+            return command.execute(args, bookKeeper, out, err);
+        } catch (Exception e) {
+            err.println(e.getMessage());
+            return 127;
+        }
     }
 
     public static void main(String[] args) {
         Main main = new Main();
-        Map<String, CommandArgs> subCommandsMap = main.getSubCommands();
+        Map<String, CommandArgs> subCommandsMap = main.getSubCommandsMap();
 
         JCommander.Builder builder = JCommander.newBuilder()
-                .programName("pf")
+                .programName(APP_NAME)
                 .addObject(main);
 
         subCommandsMap.forEach((builder::addCommand));
@@ -65,41 +90,16 @@ public class Main {
         String parsedCommand = jc.getParsedCommand();
         if (parsedCommand == null || parsedCommand.isEmpty()) {
             jc.usage();
-            System.exit(1);
+            System.exit(2);
         }
         Repository repository = main.getRepository(main.repo);
         BookKeeper bookKeeper = main.getBookKeeper(repository);
 
-        Command command = null;
-
-        switch (parsedCommand) {
-            case "list-accounts": {
-                command = new ListAccountsCommand();
-                break;
-            }
-            case "add-account": {
-                command = new AddAccountCommand();
-                break;
-            }
-            case "load": {
-                command = new LoadCommand();
-                break;
-            }
-            case "map": {
-                command = new MappingCommand();
-                break;
-            }
-            default:
-                jc.usage();
-                System.exit(1);
-        }
-        int exitCode = 127;
-        CommandArgs commandArgs = subCommandsMap.get(parsedCommand);
-        try {
-            exitCode = command.execute(commandArgs, bookKeeper, System.out, System.err);
-        } catch (Exception e) {
-            System.exit(exitCode);
-        }
-        System.exit(exitCode);
+        main.getCommand(parsedCommand).ifPresentOrElse(command -> {
+            CommandArgs commandArgs = subCommandsMap.get(parsedCommand);
+            System.exit(main.executeSubCommand(command, commandArgs, bookKeeper, System.out, System.err));
+        }, () -> {
+            System.exit(3);
+        });
     }
 }

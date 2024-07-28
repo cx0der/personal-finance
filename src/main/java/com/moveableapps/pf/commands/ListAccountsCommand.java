@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.util.List;
 
 public class ListAccountsCommand implements Command {
+    public static final String COMMAND_NAME = "list-accounts";
 
     @Override
     public int execute(CommandArgs commandArgs, BookKeeper bookKeeper, PrintStream out, PrintStream err) {

@@ -88,7 +88,11 @@ public class Main {
             jc.parse(args);
         } catch (ParameterException e) {
             System.err.println(e.getMessage());
-            jc.usage();
+            if (jc.getParsedCommand() != null) {
+                jc.usage(jc.getParsedCommand());
+            } else {
+                jc.usage();
+            }
             System.exit(1);
         }
         String parsedCommand = jc.getParsedCommand();

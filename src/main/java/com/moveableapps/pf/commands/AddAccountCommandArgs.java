@@ -1,30 +1,42 @@
 package com.moveableapps.pf.commands;
 
-import com.beust.jcommander.IParametersValidator;
 import com.beust.jcommander.Parameter;
-import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.moveableapps.pf.entities.AccountType;
 
-import java.util.Map;
+@Parameters(commandDescription = "Add account")
+public class AddAccountCommandArgs extends CommandArgs {
 
-@Parameters(parametersValidators = AddAccountCommandArgs.class, commandDescription = "Add account")
-public class AddAccountCommandArgs extends CommandArgs implements IParametersValidator {
-
-    @Parameter(names = {"-a", "--add"}, description = "Name of account")
-    String accountName;
+    @Parameter(description = "Name of account", required = true)
+    private String accountName;
 
     @Parameter(names = {"-c", "--currency"}, description = "ISO Currency symbol")
-    String currency;
+    private String currency;
 
     @Parameter(names = {"-d", "--desc"}, description = "Account description")
-    String accountDescription = "";
+    private String accountDescription = "";
 
     @Parameter(names = {"-t", "--type"}, description = "Account type")
-    AccountType accountType;
+    private AccountType accountType;
 
     public AddAccountCommandArgs() {
         // Default constructor
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getAccountDescription() {
+        return accountDescription;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
     }
 
     // constructor for add account
@@ -33,16 +45,5 @@ public class AddAccountCommandArgs extends CommandArgs implements IParametersVal
         this.accountDescription = accountDescription;
         this.currency = currency;
         this.accountType = accountType;
-    }
-
-    @Override
-    public void validate(Map<String, Object> params) throws ParameterException {
-        if (params.get("--add") != null) {
-            // Add account mode
-            // type, currency cannot be null
-            if (params.get("--type") == null || params.get("--currency") == null) {
-                throw new ParameterException("Account creation needs type and currency along with name");
-            }
-        }
     }
 }

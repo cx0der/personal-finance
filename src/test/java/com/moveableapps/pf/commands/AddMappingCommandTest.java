@@ -31,7 +31,7 @@ class AddMappingCommandTest {
 
     @Test
     @DisplayName("Successfully adds a valid mapping")
-    void addValidMappingTest() {
+    void addValidMappingTest() throws Exception {
         Account account = new Account("Expense:Groceries", "Groceries", "INR", AccountType.EXPENSE);
         repository.addAccount(account);
         AddMappingCommandArgs args = new AddMappingCommandArgs("groceries", "Expense:Groceries");
@@ -43,7 +43,7 @@ class AddMappingCommandTest {
 
     @Test
     @DisplayName("Fails for duplicate description")
-    void failForDuplicateDescription() {
+    void failForDuplicateDescription() throws Exception {
         Account account = new Account("Expense:Groceries", "Groceries", "INR", AccountType.EXPENSE);
         repository.addAccount(account);
 
@@ -63,7 +63,7 @@ class AddMappingCommandTest {
 
     @Test
     @DisplayName("Fails if unable to find account")
-    void failForInvalidAccount() {
+    void failForInvalidAccount() throws Exception {
         AddMappingCommandArgs args = new AddMappingCommandArgs("groceries", "Expense:Groceries");
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

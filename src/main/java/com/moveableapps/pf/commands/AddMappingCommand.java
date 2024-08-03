@@ -13,12 +13,7 @@ public class AddMappingCommand implements Command {
     @Override
     public int execute(CommandArgs commandArgs, BookKeeper bookKeeper, PrintStream out, PrintStream err) {
         AddMappingCommandArgs args = (AddMappingCommandArgs) commandArgs;
-        try {
-            addMapping(bookKeeper, args);
-        } catch (RuntimeException e) {
-            err.println(e.getMessage());
-            return 1;
-        }
+        addMapping(bookKeeper, args);
         return 0;
     }
 

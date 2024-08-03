@@ -30,7 +30,7 @@ class AddAccountCommandTest {
 
     @Test
     @DisplayName("Creates an account successfully")
-    void addAccountCreatesSuccessfully() {
+    void addAccountCreatesSuccessfully() throws Exception {
         AddAccountCommandArgs args = new AddAccountCommandArgs("Income account", "Salary account", "INR", AccountType.INCOME);
         int exitCode = cmd.execute(args, bookKeeper, System.out, System.err);
         assertEquals(0, exitCode);
@@ -38,7 +38,7 @@ class AddAccountCommandTest {
 
     @Test
     @DisplayName("Displays the name and id of the new account")
-    void addAccountPrintsNameAndId() {
+    void addAccountPrintsNameAndId() throws Exception {
         AddAccountCommandArgs args = new AddAccountCommandArgs("Fuel", "Car fuel", "INR", AccountType.EXPENSE);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -48,7 +48,7 @@ class AddAccountCommandTest {
 
     @Test
     @DisplayName("Fails for duplicate account with exit code 1")
-    void addAccountDuplicateTest() {
+    void addAccountDuplicateTest() throws Exception {
         Account account = TestUtils.getIncomeAccount();
         repository.addAccount(account);
         AddAccountCommandArgs args = new AddAccountCommandArgs(account.name(), account.description(), account.currency(), account.type());
@@ -58,7 +58,7 @@ class AddAccountCommandTest {
 
     @Test
     @DisplayName("Displays error message for duplicate account")
-    void onDuplicatePrintsError() {
+    void onDuplicatePrintsError() throws Exception {
         Account account = TestUtils.getIncomeAccount();
         repository.addAccount(account);
         AddAccountCommandArgs args = new AddAccountCommandArgs(account.name(), account.description(), account.currency(), account.type());

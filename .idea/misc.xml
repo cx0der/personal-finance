@@ -2,7 +2,7 @@
 <project version="4">
   <component name="EntryPointsManager">
     <writeAnnotations>
-      <writeAnnotation name="picocli.CommandLine.Option" />
+      <writeAnnotation name="com.beust.jcommander.Parameter" />
     </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />

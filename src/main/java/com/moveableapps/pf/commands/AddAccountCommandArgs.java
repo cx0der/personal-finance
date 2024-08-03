@@ -10,13 +10,13 @@ public class AddAccountCommandArgs extends CommandArgs {
     @Parameter(description = "Name of account", required = true)
     private String accountName;
 
-    @Parameter(names = {"-c", "--currency"}, description = "ISO Currency symbol")
+    @Parameter(names = {"-c", "--currency"}, description = "ISO Currency symbol", required = true)
     private String currency;
 
     @Parameter(names = {"-d", "--desc"}, description = "Account description")
     private String accountDescription = "";
 
-    @Parameter(names = {"-t", "--type"}, description = "Account type")
+    @Parameter(names = {"-t", "--type"}, description = "Account type", required = true)
     private AccountType accountType;
 
     public AddAccountCommandArgs() {

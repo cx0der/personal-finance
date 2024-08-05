@@ -10,11 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddMappingCommandTest {
 
@@ -31,7 +30,7 @@ class AddMappingCommandTest {
 
     @Test
     @DisplayName("Successfully adds a valid mapping")
-    void addValidMappingTest() throws Exception {
+    void addValidMappingTest() {
         Account account = new Account("Expense:Groceries", "Groceries", "INR", AccountType.EXPENSE);
         repository.addAccount(account);
         AddMappingCommandArgs args = new AddMappingCommandArgs("groceries", "Expense:Groceries");
@@ -43,19 +42,18 @@ class AddMappingCommandTest {
 
     @Test
     @DisplayName("Fails for duplicate description")
-    void failForDuplicateDescription() throws Exception {
+    void failForDuplicateDescription() {
         Account account = new Account("Expense:Groceries", "Groceries", "INR", AccountType.EXPENSE);
         repository.addAccount(account);
 
         AutoMapping mapping = new AutoMapping("groceries", 1);
         repository.addAutoMapping(mapping);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         AddMappingCommandArgs args = new AddMappingCommandArgs("groceries", "Expense:Groceries");
-        int exitCode = cmd.execute(args, bookKeeper, System.out, new PrintStream(stream));
+        RuntimeException e = assertThrows(RuntimeException.class,
+                () -> cmd.execute(args, bookKeeper, System.out, System.err));
 
-        assertEquals("Description is not unique\n", stream.toString());
-        assertEquals(1, exitCode);
+        assertEquals("Description is not unique", e.getMessage());
 
         Map<String, AutoMapping> mappings = repository.getAllAutoMappings();
         assertEquals(1, mappings.size());
@@ -63,14 +61,13 @@ class AddMappingCommandTest {
 
     @Test
     @DisplayName("Fails if unable to find account")
-    void failForInvalidAccount() throws Exception {
+    void failForInvalidAccount() {
         AddMappingCommandArgs args = new AddMappingCommandArgs("groceries", "Expense:Groceries");
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        int exitCode = cmd.execute(args, bookKeeper, System.out, new PrintStream(stream));
+        RuntimeException e = assertThrows(RuntimeException.class,
+                () -> cmd.execute(args, bookKeeper, System.out, System.err));
 
-        assertEquals(1, exitCode);
-        assertEquals("Cannot find account by the name: Expense:Groceries\n", stream.toString());
+        assertEquals("Cannot find account by the name: Expense:Groceries", e.getMessage());
 
         Map<String, AutoMapping> mappings = repository.getAllAutoMappings();
         assertEquals(0, mappings.size());

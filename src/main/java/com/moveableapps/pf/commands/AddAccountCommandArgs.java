@@ -5,7 +5,7 @@ import com.beust.jcommander.Parameters;
 import com.moveableapps.pf.entities.AccountType;
 
 @Parameters(commandDescription = "Add account")
-public class AddAccountCommandArgs extends CommandArgs {
+public class AddAccountCommandArgs implements CommandArgs {
 
     @Parameter(description = "Name of account", required = true)
     private String accountName;

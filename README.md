@@ -35,5 +35,5 @@ $ ./pf add-mapping -d 'food mart' -t Expense:Groceries
 $ ./pf list-mappings
 
 # importing/loading transactions from a csv file
-$ ./pf load -a Income:Salary --date-field 0 --desc-field 1 --amount-field 2 -f input.csv
+$ ./pf load -a Income:Salary --date-field 1 --desc-field 2 --amount-field 3 -f input.csv
 ```

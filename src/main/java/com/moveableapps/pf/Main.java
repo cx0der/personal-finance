@@ -75,6 +75,7 @@ public class Main {
             }
             // Initialize the repository and Bookkeeper
             Repository repository = getRepository(repo);
+            repository.initialize();
             BookKeeper bookKeeper = getBookKeeper(repository);
 
             // JCommand would have already checked if the sub-command is valid or not

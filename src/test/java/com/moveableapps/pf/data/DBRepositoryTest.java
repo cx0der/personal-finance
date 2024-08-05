@@ -31,6 +31,7 @@ class DBRepositoryTest {
     void setUp() {
         String dbPath = tempDir.resolve("").toAbsolutePath().toString();
         dbRepository = new DBRepository(dbPath);
+        dbRepository.initialize();
     }
 
     @Test

@@ -4,7 +4,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
 @Parameters(commandDescription = "Add mapping")
-public class AddMappingCommandArgs extends CommandArgs {
+public class AddMappingCommandArgs implements CommandArgs {
     @Parameter(names = {"-d", "--desc"}, description = "Transaction description", required = true)
     private String txnDescription;
 

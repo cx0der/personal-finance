@@ -13,15 +13,7 @@ public class CsvParser {
 
     private static final char DOUBLE_QUOTES = '"';
 
-    private final String fileName;
-    private final char delimiter;
-
-    public CsvParser(String fileName, char delimiter) {
-        this.fileName = fileName;
-        this.delimiter = delimiter;
-    }
-
-    public List<Map<Integer, String>> parse(boolean skipFirstLine, int[] fieldsToSelect) {
+    public List<Map<Integer, String>> parse(String fileName, char delimiter, boolean skipFirstLine, int[] fieldsToSelect) {
         List<Map<Integer, String>> result = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -31,7 +23,7 @@ public class CsvParser {
                     lineCount++;
                     continue;
                 }
-                Map<Integer, String> fields = parseLine(line, fieldsToSelect);
+                Map<Integer, String> fields = parseLine(line, delimiter, fieldsToSelect);
                 lineCount++;
                 result.add(fields);
             }
@@ -41,7 +33,7 @@ public class CsvParser {
         return result;
     }
 
-    private Map<Integer, String> parseLine(String line, int[] fieldsToSelect) {
+    private Map<Integer, String> parseLine(String line, char delimiter, int[] fieldsToSelect) {
         Map<Integer, String> fields = new HashMap<>();
 
         boolean inQuotes = false;

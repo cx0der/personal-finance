@@ -35,10 +35,16 @@ public class DBRepository implements Repository {
     private static final DateFormat sqliteDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     private final String jdbcUrl;
+    private final String dbDirectory;
     protected Connection connection;
 
     public DBRepository(String dbDirectory) {
+        this.dbDirectory = dbDirectory;
         jdbcUrl = "jdbc:sqlite:" + dbDirectory + File.separator + "personal-finance.db";
+    }
+
+    @Override
+    public void initialize() {
         this.connection = initialize(dbDirectory);
     }
 
@@ -250,7 +256,6 @@ public class DBRepository implements Repository {
                 mappings.put(description, mapping);
             }
         } catch (SQLException e) {
-//            logger.error("Error fetching mappings: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
         return mappings;
@@ -262,7 +267,6 @@ public class DBRepository implements Repository {
             try {
                 Files.createDirectories(directory);
             } catch (IOException e) {
-//                logger.error("Unable to create database directory: " + e.getLocalizedMessage());
                 throw new RuntimeException(e);
             }
         }
@@ -271,14 +275,12 @@ public class DBRepository implements Repository {
             createDatabase(connection, DBRepository.class.getClassLoader().getResourceAsStream("sqlite_bootstrap.sql"));
             return connection;
         } catch (SQLException e) {
-//            logger.error("Unable to create SQLite DB: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
     }
 
     private void createDatabase(Connection connection, InputStream is) {
         if (is == null) {
-//            logger.error("Unable to read SQL script");
             throw new RuntimeException("Unable to read SQL script");
         }
         Scanner scanner = new Scanner(is);
@@ -296,7 +298,6 @@ public class DBRepository implements Repository {
                 }
             }
         } catch (SQLException e) {
-//            logger.error("Error while creating database: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
     }

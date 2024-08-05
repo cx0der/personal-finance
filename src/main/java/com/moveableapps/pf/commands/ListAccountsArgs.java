@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 @Parameters(parametersValidators = ListAccountsArgs.class, commandDescription = "List accounts")
-public class ListAccountsArgs extends CommandArgs implements IParametersValidator {
+public class ListAccountsArgs implements IParametersValidator, CommandArgs {
 
     @Parameter(names = {"-p", "--pattern"}, description = "Regex pattern")
     private String pattern;

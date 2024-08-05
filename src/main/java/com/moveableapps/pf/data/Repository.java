@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public interface Repository {
 
+    default void initialize() {}
+
     long addAccount(Account account);
 
     List<Account> getAllAccounts();

@@ -14,8 +14,9 @@ dependencies {
     implementation 'org.xerial:sqlite-jdbc:3.46.0.0'
     implementation 'org.slf4j:slf4j-nop:2.0.13'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testImplementation(platform('org.junit:junit-bom:5.10.3'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
 
 java {
@@ -34,4 +35,7 @@ application {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
